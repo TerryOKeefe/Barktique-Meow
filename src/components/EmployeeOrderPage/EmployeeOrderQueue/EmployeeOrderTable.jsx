@@ -34,7 +34,7 @@ function EmployeeOrderTable() {
     // adding id here because material-ui REQUIRES it.
     order.id = order.order_id;
     order.fullName = `${order.cus_first_name} ${order.cus_last_name}`;
-    order.date = moment(order.cus_upload_date).format("MMM Do YY");
+    order.date = moment(order.cus_upload_date).format("MMM Do YYYY");
     return order;
   });
 
@@ -65,11 +65,11 @@ function EmployeeOrderTable() {
   };
 
   const orderNumberHandler = (config) => {
-    const orderNumber = config.row.cus_order_number; // We need to hit the route with order number, not order_id
+    const orderNumber = config.row.cus_order_number; 
     return (
       <div
         onClick={() => {
-          handleOrderNumberClick(orderNumber); // This is how we target the order number click event!
+          handleOrderNumberClick(orderNumber);
         }}
         className="OrderNum-Nav"
       >
@@ -79,11 +79,11 @@ function EmployeeOrderTable() {
   };
 
   const nameHandler = (config) => {
-    const orderNumber = config.row.cus_order_number; // We need to hit the route with order number, not order_id
+    const orderNumber = config.row.cus_order_number;
     return (
       <div
         onClick={() => {
-          handleOrderNumberClick(orderNumber); // This is how we target the order number click event!
+          handleOrderNumberClick(orderNumber);
         }}
         className="OrderNum-Nav"
       >
@@ -93,12 +93,12 @@ function EmployeeOrderTable() {
   };
 
   const employeeHandler = (config) => {
-    const orderNumber = config.row.cus_order_number; // We need to hit the route with order number, not order_id
+    const orderNumber = config.row.cus_order_number; 
     return (
       <>
         <div
           onClick={() => {
-            handleOrderNumberClick(orderNumber); // This is how we target the order number click event!
+            handleOrderNumberClick(orderNumber); 
           }}
           className="OrderNum-Nav"
         >
@@ -109,16 +109,12 @@ function EmployeeOrderTable() {
   };
 
   const handleOrderNumberClick = (orderNumber) => {
-    // We clicked this order number
-    console.log("clicked handleOrderNumberClick", orderNumber);
-    console.log(`This is the param orderNumber => `, orderNumber);
-    console.log(`This is the user I am => `, user.id);
-    // We pushed the user that's logged in and the order number here.
+
     history.push(`/orderPage/${user.id}/${orderNumber}`);
   };
 
   const handleClaimClick = (orderNumber) => {
-    console.log(`This is the order number you clicked`, orderNumber);
+ 
     Swal.fire({
       icon: "question",
       title: "Are you sure you want to claim this order?",
@@ -127,7 +123,7 @@ function EmployeeOrderTable() {
       confirmButtonColor: "#000000",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(`Order number to push to next page => `, orderNumber);
+  
         const startOrder = {
           cus_order_isStarted: true,
           cus_progress_status: "In Progress",
@@ -210,14 +206,14 @@ function EmployeeOrderTable() {
   const [loading, setLoading] = useState(true);
 
   const requestSearch = (searchValue) => {
-    console.log(`This is searchText >`, searchText);
+    
     setSearchText(searchValue);
     const searchRegex = new RegExp(escapeRegExp(searchValue), "i");
-    console.log(`This is rows > `, rows);
+
     const filteredRows = rows.filter((row) => {
-      console.log(`inside of filteredRows`, row);
+    
       return Object.keys(row).some((field) => {
-        console.log(`inside of field `, field);
+    
         if (row[field] !== null) {
           return searchRegex.test(row[field].toString());
         }

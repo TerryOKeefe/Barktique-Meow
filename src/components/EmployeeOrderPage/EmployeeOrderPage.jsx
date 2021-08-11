@@ -32,24 +32,23 @@ const useStyles = makeStyles((theme) => ({
 const EmployeeOrderPage = () => {
   const history = useHistory();
   const { orderNumber, id } = useParams();
-  // const orders = useSelector((store) => store.orders); // I think this is the store with the orders in it?
+ 
   const productOrderReducer = useSelector((store) => store.productOrderReducer);
   const user = useSelector((store) => store.user);
   const [order, setOrder] = useState();
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  // Data that needs to be sent with our useEffect below
+
   const data = {
     id: id,
     cus_order_number: orderNumber,
   };
 
-  //Sends Error Package to Saga
-  //Data is error status, order number, user id
+
 
   const resolveImageError = () => {
-    console.log(`resolveImageError clicked`);
+
 
     const data = {
       cus_error_image: false,
@@ -62,7 +61,7 @@ const EmployeeOrderPage = () => {
   };
 
   const errorWithImage = () => {
-    console.log(`errorWithImage clicked`);
+ 
 
     const data = {
       cus_error_image: true,
@@ -75,7 +74,7 @@ const EmployeeOrderPage = () => {
   };
 
   const noEmployeeNumberResolve = () => {
-    console.log(`noEmployeeNumberResolve clicked`);
+  
 
     const data = {
       cus_error_image: false,
@@ -88,19 +87,17 @@ const EmployeeOrderPage = () => {
   };
 
   const noEmployeeNumberError = () => {
-    console.log(`noEmployeeNumberError clicked`);
+  
     const data = {
       cus_error_image: true,
       cus_order_number: productOrderReducer[0]?.cus_order_number,
       cus_progress_status: 'Image Rejected',
       id: user.id,
     };
-
-    dispatch({ type: 'IMAGE_ERROR_BUTTON', payload: { data } });
+   dispatch({ type: 'IMAGE_ERROR_BUTTON', payload: { data } });
   };
 
-  //Sends Complete Notification to Saga
-  //Data is status, order number, user id
+
   const setComplete = () => {
     const data = {
       cus_progress_status: 'Complete',
@@ -157,37 +154,9 @@ const EmployeeOrderPage = () => {
   };
 
   const downloadImage = (event) => {
-    // New way, works like a charm.
+
+    
     saveAs(productOrderReducer[0]?.cus_image, 'image.jpg');
-
-    // This way allows you to open the image in a browser,
-    // couldn't get it to download though, chrome's fault???
-
-    // let url = productOrderReducer[0]?.cus_image;
-    // let slicedURL = url.slice(57)
-    // console.log(`This is the sliced url`, slicedURL)
-    //  console.log(`This is the url => `, url);
-    // let a = document.createElement('a');
-    // a.href = url;
-    // console.log(`This is the a.href`, a.href);
-    // a.download = slicedURL;
-    // document.body.appendChild(a)
-    // console.log(`This is the document => `, document.body.appendChild(a));
-    // a.click();
-    // document.body.removeChild(a)
-
-    // This is the old method
-    // console.log(`download image?`, productOrderReducer[0]?.cus_image);
-    // fetch(productOrderReducer[0]?.cus_image).then((response) => {
-    //   console.log(`This is our response from S3 => `, response);
-    //   response.blob().then((blob) => {
-    //     let url = window.URL.createObjectURL(blob);
-    //     let a = document.createElement('a');
-    //     a.href = url;
-    //     a.download = `Order ${productOrderReducer[0]?.cus_order_number}`;
-    //     a.click();
-    //   });
-    // });
   };
 
   const unassignOrder = (event) => {
@@ -227,7 +196,7 @@ const EmployeeOrderPage = () => {
         } catch (error) {
           console.log(`Didn't make it did we... `, error);
         }
-        history.push(`/employee`);
+        //history.push(`/employee`);
       });
   };
 
