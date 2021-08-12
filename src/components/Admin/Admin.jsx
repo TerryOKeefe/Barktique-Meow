@@ -66,33 +66,7 @@ function Admin() {
         </>
       )}
 
-      {/* {!ordersState ? (
-        ''
-      ) : (
-        <div>
-          <section>
-            <div>
-              <AdminHeader />
-            </div>
-            <Grid
-              className={classes.buttonGroup}
-              container
-              direction="row"
-              justifyContent="space-around"
-            >
-              <AdminCreateButton />
-              <AdminLogOutButton />
-            </Grid>
-          </section>
-          <section>
-            <h2>{`Welcome`}</h2>
-            <h3>{`${user.employee_first_name} ${user.employee_last_name}`}</h3>
-            <div>
-              <AdminTabs />
-            </div>
-          </section>
-        </div>
-      )} */}
+    
     </>
   );
 }

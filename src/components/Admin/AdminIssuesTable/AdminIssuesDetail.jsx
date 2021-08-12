@@ -38,13 +38,13 @@ function AdminIssuesDetail({ orders, order, key }) {
   console.log('This order ==>', order);
 
   const handleIssuesClick = (order) => {
-    console.log('You clicked handleIssuesClick', order);
+ 
 
     // ****** DEV NOTE, route needs to be changed.
     history.push(`/orderPage/${order.user_id_ref}/${order.cus_order_number}`);
   };
 
-  console.log('These are the issues:', orders);
+
 
   return (
     <>

@@ -45,7 +45,6 @@ function AdminIssuesTable() {
 
   // all orders in the store
   const orders = useSelector((store) => store.adminIssuesReducer);
-  console.log('what are the orders:', orders);
 
   return (
     <>

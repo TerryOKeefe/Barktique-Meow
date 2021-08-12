@@ -51,7 +51,7 @@ function AdminArtistTable() {
     // function to handle artist delete
     const handleDelete = (artist) => {
         // console log to see delete btn fires
-        console.log('Clicked Delete', artist);
+       
 
         Swal.fire({
             title: "Are you sure?",
@@ -91,7 +91,7 @@ function AdminArtistTable() {
     };
 
     const handlePushToEditEmployee = (artist) => {
-        console.log(`You clicked on this artist => `, artist);
+    
         history.push(`/editEmployee/${artist.id}`);
     };
 

@@ -1,121 +1,62 @@
+# Barktique + Meow
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Description
+_Duration: 2 Week Sprint_
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+This application contains three parts: Customer landing page, Artist order queue, and an Admin overview.
 
-## Use the Template for This Repository (Don't Clone)
+On the customer landing page, the customer is required to fill in all inputs marked as required. The customer then needs to upload an image. When the image is uploaded it is processed to validate that it meets the standards for laser etching. If the image fails, then the customer is alerted along with the ability to select another image. When the image passes, the customer has the option to put down any notes (ie. please select the pet on the right). The customer then needs to mark that they own the rights to the image being uploaded. If this step gets missed, on submit an alert will prompt reminding the customer to select that checkbox. The option is also given to allow Barktique + Meow to use the photo on company website and social media.
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+The Artist and Admin login page redirects the user based on access level set by the Admin. The Artist will be directed to the order processing queue. On this view, the artist can start, process, and complete orders. They also have the option to mark image issues if customers don't provide notes and the chosen pet is unclear. The artist has the customer information displayed on top to allow quick contact for clarification. The order also gets flagged in the Admin view.
+
+The Admin upon login is directed to a view with three tabs to navigate. The orders tab displays all orders in real time status. Admin can click on order number to view the entire order details. A drop down can be clicked for quick access without leaving the admin page. The issues tab displays any orders that have been in the queue for more than 5 days and not started. If an artist selects image issue, it will also be displayed in this tab. A drop down for quick access to customer details is provided. The artist tab displays all current artist and admins. In this view the admin can edit employee details as needed. If an employee needs to be deleted, a delete button is also shown with an alert to verify this action is correct. 
 
 
-## Prerequisites
+## Application GIF
 
-Before you get started, make sure you have the following software installed on your computer:
+#### Customer Landing Page
+
+![](customer-frontend.gif)
+#### Employee and Admin Landing Page
+
+![](employee-frontend.gif)
+### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- [Postico](https://eggerapps.at/postico/)
+- PostgreSQL
 
-## Create database and table
+## Installation
 
-Create a new database called `prime_app` and create a `user` table:
+1. Fork and clone project
+2. Open with the editor of your choice
+3. Create a database through Postico called `barktique_meow`
+4. Data to setup table found in `database.sql` file
+5. Open terminal and run `brew services start postgresql`
+6. Run `npm install` to get dependencies for `package.json`
+7. Split terminal window
+8. `npm run server`
+9. `npm run client`
+10. Browser will load and direct to `http://localhost:3000`
+11. When finished in each terminal window press `control + C` to stop server and client
+12. Stop postgresql in terminal with `brew services stop postgresql`
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## Built With
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+- React
+- Redux
+- Redux-Saga
+- AWS-S3
+- Moment.js
+- Nodemailer
+- Express.js
+- PostgreSQL
+- Passport
+- JavaScript
+- Material-UI
+- HTML
+- CSS
 
-## Development Setup Instructions
+## Acknowledgment
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+Thanks to Prime Digital Academy who equipped and helped make this application a reality.

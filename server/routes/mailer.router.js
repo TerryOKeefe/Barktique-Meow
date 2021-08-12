@@ -18,13 +18,15 @@ const transporter = nodemailer.createTransport({
 //Send email when the order is entered
 router.post('/confirmation', (req, res) => {
     
-    console.log('Mail data in =>', req.body);
+    console.log('Mail data in =>', req.body.cus_order_number);
     
     const messageOptions = {
         from: emailUser,
         to: req.body.cus_email,
         subject: `Barktique Order Confirmation`,
-        text: `Thank You for your order!  We'll let you know when the work has been completed.`
+        text: `Thank You for your order!  Your order number is: ${req.body.cus_order_number}. We'll let you know when the work has been completed.
+        
+        If you have any questions about your order please reach out at contactus@barktiqueandmeow.com`
     };
 
     transporter.sendMail(messageOptions, function (err, info) {
@@ -46,7 +48,7 @@ router.post('/completed', (req, res) => {
         from: emailUser,
         to: req.body.cus_email,
         subject: `Barktique Order Completed`,
-        text: `Your order has wrapped up.  We'll send you a shipping email once it's on the way`
+        text: `Your order: ${req.body.cus_order_number} has wrapped up.  We'll send you a shipping email once it's on the way`
     };
 
     transporter.sendMail(messageOptions, function (err, info) {

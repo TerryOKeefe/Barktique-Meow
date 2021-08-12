@@ -11,17 +11,17 @@ import {
   GridToolbarDensitySelector,
   GridToolbarFilterButton,
 } from '@material-ui/data-grid';
-// import { useDemoData } from '@material-ui/x-grid-data-generator';
+
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
-// import { createMuiTheme } from '@material-ui/core/styles';
+
 import { makeStyles } from '@material-ui/styles';
 
 export const escapeRegExp = (value) => {
   return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 };
 
-// const defaultTheme = createMuiTheme();
+
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(0.5, 0.5, 0),

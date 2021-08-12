@@ -86,7 +86,7 @@ function OrderForm() {
   );
 
   async function postImage({ image }) {
-    console.log(image);
+  
     const formData = new FormData();
     formData.append('image', image);
     const result = await axios.post('/api/s3/images', formData, {
