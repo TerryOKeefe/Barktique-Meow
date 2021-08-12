@@ -13,6 +13,7 @@ The Admin upon login is directed to a view with three tabs to navigate. The orde
 
 To access customer route
 - /order
+
 To access employee login
 - /login
 
