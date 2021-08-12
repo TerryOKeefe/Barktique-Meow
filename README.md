@@ -25,6 +25,7 @@ Artist Account
 - Artist1@gmail.com
 - Arti$t1
 
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://tranquil-anchorage-97101.herokuapp.com/#/login)
 
 ## Application GIF
 
