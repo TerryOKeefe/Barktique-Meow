@@ -11,6 +11,8 @@ The Artist and Admin login page redirects the user based on access level set by 
 
 The Admin upon login is directed to a view with three tabs to navigate. The orders tab displays all orders in real time status. Admin can click on order number to view the entire order details. A drop down can be clicked for quick access without leaving the admin page. The issues tab displays any orders that have been in the queue for more than 5 days and not started. If an artist selects image issue, it will also be displayed in this tab. A drop down for quick access to customer details is provided. The artist tab displays all current artist and admins. In this view the admin can edit employee details as needed. If an employee needs to be deleted, a delete button is also shown with an alert to verify this action is correct. 
 
+*** AWS-S3 bucket is not setup - Image upload functionality will not work ***
+
 To access customer route
 - /order
 
